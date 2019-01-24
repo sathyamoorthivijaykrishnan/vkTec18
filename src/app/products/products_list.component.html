@@ -1,0 +1,62 @@
+<div class='card' >
+        <div class='card-header'>
+            <div class='row'>
+                <div class='col-md-2'>
+                     {{pageTitle}}
+                </div>
+            </div>
+        </div>
+        <div class='card-body'>
+          <div class='row'>
+            <div class='col-md-2'>Filter by:</div>
+            <div class='col-md-3'>
+              <input [(ngModel)] ='listFilter'/>
+            </div>
+          </div>
+          <br>
+          <div class='row'>
+            <div class='col-md-2'>
+              <h4>Filtered by:</h4>
+            </div>
+            <div class='col-md-2'>
+              <h4>{{listFilter}} </h4>
+            </div>
+          </div>
+          <div class='table-responsive'>
+            <table class='table' *ngIf ='products && products.length'>
+              <thead>
+                <tr>
+                  <th>
+                    <button class='btn btn-primary' (click)= 'toggleImage()'>{{showImage ? 'Hide' :'Show'}} Photo
+                    </button>
+                  </th>
+                  <th>Employee ID</th>
+                  <th>Employee Name</th>
+                  <th>Designation</th>
+                  <th>Date of Joining</th>
+                  <th>Primary Skills</th>
+                  <th>Secondary Skills</th>
+                  <th>Years of Exp</th>
+                  <th>Skill Rating</th>
+                  <th>ATC</th>         
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor='let product of products'>
+                  <td><img *ngIf ='showImage' [src] = 'product.imageUrl' [title]='product.employeeName | lowercase' [style.width.px]='imageWidth' [style.margin.px]='imageMargin'></td>
+                  <td>{{product.employeeId}}</td>
+                  <td>{{product.employeeName}}</td>
+                  <td>{{product.designation}}</td>
+                  <td>{{product.joiningDate | date :'dd/ MMM yyyy'| convertToSpaces :'/'}}</td>
+                  <td>{{product.primarySkill}}</td>
+                  <td>{{product.secondarySkill}}</td>                  
+                  <td>{{product.experience}}</td>
+                  <td>{{product.skillRating}}</td>
+                  <td>{{product.annualSalary| currency :'INR' :'symbol':'1.2-2'}}</td>
+                </tr>                  
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
